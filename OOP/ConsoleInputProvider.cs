@@ -1,8 +1,8 @@
 namespace OOP;
 
-public static class InputProvider
+public class ConsoleInputProvider : IInputProvider
 {
-    public static void ReadAndParseInput(out int selectedField, int[] validInputs)
+    public void ReadAndParseInput(out int selectedField, int[] validInputs)
     {
         Console.WriteLine("Select a Field ");
 
@@ -19,4 +19,9 @@ public static class InputProvider
             selectedField = inputAsInt;
         }
     }
+}
+
+public interface IInputProvider
+{
+    void ReadAndParseInput(out int selectedField, int[] validInputs);
 }

@@ -30,11 +30,16 @@ public class AIPlayer : Player
 }
 public class HumanPlayer : Player
 {
-    public HumanPlayer(FieldValue playerId) : base(playerId) { }
+    private IInputProvider inputProvider;
+
+    public HumanPlayer(FieldValue playerId) : base(playerId)
+    {
+        inputProvider = new ConsoleInputProvider();
+    }
     
     public override void MakeTurn(Field currentField)
     {
-        InputProvider.ReadAndParseInput(out var input, currentField.GetEmptyFields());
+        inputProvider.ReadAndParseInput(out var input, currentField.GetEmptyFields());
         
         for (int x = 0; x < currentField.Values.Length; x++)
         {
