@@ -36,16 +36,13 @@ public class Field
     {
         FieldValue[][] combinations =
         {
-            //Horizontal
-            new[] {Values[0], Values[1], Values[2]},
+            new[] {Values[0], Values[1], Values[2]}, //Horizontal
             new[] {Values[3], Values[4], Values[5]},
             new[] {Values[6], Values[7], Values[8]},
-            //Vertical
-            new[] {Values[0], Values[3], Values[6]},
+            new[] {Values[0], Values[3], Values[6]}, //Vertical
             new[] {Values[1], Values[4], Values[7]},
             new[] {Values[2], Values[5], Values[8]},
-            //Diagonal
-            new[] {Values[0], Values[4], Values[8]},
+            new[] {Values[0], Values[4], Values[8]}, //Diagonal
             new[] {Values[2], Values[4], Values[6]},
         };
         
