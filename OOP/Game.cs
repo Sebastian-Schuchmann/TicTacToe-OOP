@@ -10,15 +10,19 @@ public class Game
     {
         _field = new Field();
         _players[0] = new HumanPlayer(FieldValue.X);
-        _players[1] = new AIPlayer(FieldValue.O);
+        _players[1] = new HumanPlayer(FieldValue.O);
+        //_players[1] = new AIPlayer(FieldValue.O);
+        
+        Console.WriteLine(_field.ToString());
     }
 
     public GameState NextTurn()
     {
-        Console.WriteLine(_field.ToString());
-        
         var activePlayer = _players[_activePlayerIndex];
         activePlayer.MakeTurn(_field);
+        
+        Console.Clear();
+        Console.WriteLine(_field.ToString());
         
         var gameState = _field.Check();
         SwapActivePlayer();

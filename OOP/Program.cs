@@ -1,5 +1,7 @@
 ﻿using OOP;
 
+Console.Clear();
+
 var game = new Game();
 var gameState = GameState.InProgress;
 

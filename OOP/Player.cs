@@ -1,5 +1,3 @@
-using System.Globalization;
-
 namespace OOP;
 
 public abstract class Player
@@ -14,6 +12,31 @@ public abstract class Player
     public abstract void MakeTurn(Field currentField);
 }
 
+public class HumanPlayer : Player
+{
+    private IInputProvider inputProvider;
+
+    public HumanPlayer(FieldValue playerId) : base(playerId)
+    {
+        inputProvider = new ConsoleInputProvider();
+    }
+    
+    public override void MakeTurn(Field currentField)
+    {
+        Console.WriteLine("Select a Field Player " + playerID);
+        inputProvider.ReadAndParseInput(out var input, currentField.GetEmptyFields());
+        
+        for (int x = 0; x < currentField.Values.Length; x++)
+        {
+            if (currentField.Values[x] == FieldValue.Empty)
+            {
+                currentField.Values[input] = playerID;
+                return;
+            }
+        }
+    }
+}
+
 public class AIPlayer : Player
 {
     public AIPlayer(FieldValue playerId) : base(playerId) { }
@@ -26,28 +49,5 @@ public class AIPlayer : Player
         var selection = emptyFields[random.Next(0, emptyFields.Length)];
 
         currentField.Values[selection] = playerID;
-    }
-}
-public class HumanPlayer : Player
-{
-    private IInputProvider inputProvider;
-
-    public HumanPlayer(FieldValue playerId) : base(playerId)
-    {
-        inputProvider = new ConsoleInputProvider();
-    }
-    
-    public override void MakeTurn(Field currentField)
-    {
-        inputProvider.ReadAndParseInput(out var input, currentField.GetEmptyFields());
-        
-        for (int x = 0; x < currentField.Values.Length; x++)
-        {
-            if (currentField.Values[x] == FieldValue.Empty)
-            {
-                currentField.Values[input] = playerID;
-                return;
-            }
-        }
     }
 }
